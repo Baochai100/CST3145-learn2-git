@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>After School Club</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <!-- <script src="products.js"></script> -->
+  </head>
+
+
+  <body>
+    <div id="course">
+      <h1 v-text="siteName"></h1>
+      <input type="text" v-model="search" placeholder="Search Lessons" id="searchBox"/>
+      <h3>Sort By</h3>
+
+
+
+      <div id="sort">
+      
+        <p>
+          <input type="radio" id="subject" value="Subject" v-model="sort.method" />
+        <label for="subject">Subject</label>
+        </p>
+
+        <p>
+          <input type="radio" id="location" value="Location" v-model="sort.method" />
+        <label for="location">Location</label>
+        </p>
+
+        <p>
+          <input type="radio" id="price" value="Price" v-model="sort.method" />
+        <label for="price">Price</label>
+        </p>
+
+        <p>
+          <input type="radio" id="availability" value="Availability" v-model="sort.method" />
+        <label for="availability">Availability</label>
+        </p>
+      </div>
+
+
+
+
+      <div id="sort">
+        <p>
+          <input type="radio" id="ascending" value="Ascending" v-model="sort.order" />
+        <label for="ascending">Ascending</label>
+        </p>
+
+        <p>
+          <input type="radio" id="dscending" value="Descending" v-model="sort.order" />
+        <label for="dscending">Descending</label>
+        </p>
+      </div>
+
+
+
+
+      <div class="cart" v-if=" totalItemInTheCart>0" >
+      <button v-on:click="toggleShowProduct">
+        {{totalItemInTheCart}}
+        <span class="fas fa-cat"></span>
+        Shopping Cart
+      </button>
+      </div>
+      <div class="cart" v-else>
+        <button disabled>
+          {{totalItemInTheCart}}
+          <span class="fas fa-cat"></span>
+          Shopping Cart
+      </div>
+
+
+
+
+      <div v-if="showProduct" id="lessons">
+        <div v-for="product in sortedProducts  " class="container">
+          
+          <img v-bind:src="product.path" />
+          <p>Subject: {{product.subject}}</p>
+          <p>Location: {{product.location}}</p>
+          <p>Price: {{product.price}}</p>
+          <!-- <p>Space: {{product.space}}</p> -->
+          <button
+            v-on:click="clickFunction(product)"
+            v-if="canAddToCart(product)"
+          >
+            <span class="fas fa-cart-plus"></span> Add to the Cart
+          </button>
+
+          <button v-else disabled>Add to the Cart</button>
+        
+      </div>
+      </div>
+
+
+
+      <div v-else>
+        <h2>welcome to checkout page</h2>
+        <div class="checkoutContainer"> 
+        <div v-for="item in cart" class="container">
+          <img v-bind:src="item.path" />
+          <p>Subject: {{item.subject}}</p>
+          <p>Location: {{item.location}}</p>
+          <p>Price: {{item.price}}</p>
+          <p>Space: {{item.space}}</p>
+          <button v-on:click="deleteItemFromCart(item),addSpaceValue(item)">Remove</button>
+        </div>
+        </div> 
+        
+        <div class="information">
+        <h2>Enter Your Information</h2>
+
+        <form id="form" action="/" method="GET" onkeyup="checkInput()">
+          <div>
+            <label for="name">Name</label>
+            <input v-model.trim="order.name" id="name" name="name" type="text" required  onkeyup="lettersOnly(this)"/ >
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input v-model.number="order.phoneNumber" id="phone" name="phone" type="number" required onkeyup="numbersOnly(this)"/>
+          </div>
+          <button id="checkOut" type="button" disabled v-on:click="submitForm">Check Out</button>
+        </form>
+      </div>
+      </div>
+    </div>
+
+
+    <script type="text/javascript">
+      let course = new Vue({
+        el: "#course",
+        data: {
+          siteName: "After School Club",
+          showProduct: true,
+          // product: {
+          //   id: 000,
+          //   siteName: "After School Club",
+          //   subject: "Math",
+          //   location: "London",
+          //   price: "100",
+          //   path: "math.png",
+          //   space: 5,
+          // },
+          products: [],//products,
+          search:"",
+          cart: [],
+          sort:{
+            method:"Subject",
+            order:"Ascending",
+          },
+          order:{
+            firstName:" ",
+            lastName:" ",
+            phoneNumber:" ",
+          }
+        },
+        created: function() {
+          fetch("http://localhost:3000/lessons").then(   
+
+          
+          function(response){
+            response.json().then(
+              function(json){
+                course.products=json;
+              }
+            )
+          }
+          );
+        },
+         
+        methods: {
+          addItemToCart: function (product) {
+            if (product.space > 0) {
+              this.cart.push(product);
+            }
+          },
+
+          changeSpaceValue: function (product) {
+            if (product.space > 0) {
+              product.space -= 1;
+            }
+          },
+
+          clickFunction: function (product) {
+            this.addItemToCart(product);
+            this.changeSpaceValue(product);
+          },
+
+          deleteItemFromCart: function(product){
+            this.cart.pop(product);
+          },
+          addSpaceValue:function(product){
+            product.space += 1;
+          },
+          canAddToCart(product) {
+            return product.space > 0;
+          },
+          toggleShowProduct() {
+            this.showProduct = this.showProduct ? false : true;
+          },
+          submitForm(){
+            alert('Order has been submitted!')
+          },
+          
+        },
+          
+        computed: {
+
+          totalItemInTheCart: function () {
+            return this.cart.length || "";
+          },
+
+          sortedProducts() {
+            // the comparison function that defines the order
+          //   if(this.sort.method=='Subject'){
+          //     if(this.sort.order=='Ascending'){
+          //       function compare(a, b) {
+          //       if (a.topic.toLowerCase()> b.topic.toLowerCase()) return 1;
+          //       if (a.topic.toLowerCase() < b.topic.toLowerCase() ) return -1;
+          //       return 0;
+          //   }
+          // }
+          // if(this.sort.order=='Descending'){
+          //   function compare(a, b) {
+             
+          //     if (a.subject.toLowerCase()> b.subject.toLowerCase()) return -1;
+          //     if (a.subject.toLowerCase() < b.subject.toLowerCase() ) return 1;
+          //    return 0;
+          //   }
+          // }
+          //   }
+
+            if(this.sort.method=='Location'){
+              if(this.sort.order=='Ascending'){
+                function compare(a, b) {
+                if (a.location.toLowerCase()> b.location.toLowerCase()) return 1;
+                if (a.location.toLowerCase() < b.location.toLowerCase() ) return -1;
+                return 0;
+            }
+          }
+          if(this.sort.order=='Descending'){
+            function compare(a, b) {
+             
+              if (a.location.toLowerCase()> b.location.toLowerCase()) return -1;
+              if (a.location.toLowerCase() < b.location.toLowerCase() ) return 1;
+             return 0;
+            }
+          }
+            }
+
+             else if(this.sort.method=='Price'){
+              if(this.sort.order=='Ascending'){
+                function compare(a, b) {
+             
+                if (a.price > b.price) return 1;
+                if (a.price < b.price) return -1;
+                return 0;
+             
+            }
+          }
+          if(this.sort.order=='Descending'){
+            function compare(a, b) {
+             
+             if (a.price > b.price) return -1;
+             if (a.price < b.price) return 1;
+             return 0;
+            }
+          }
+        }
+
+        else if(this.sort.method=='Availability'){
+              if(this.sort.order=='Ascending'){
+                function compare(a, b) {
+             
+                if (a.space> b.space) return 1;
+                if (a.space < b.space) return -1;
+                return 0;
+             
+            }
+          }
+          if(this.sort.order=='Descending'){
+            function compare(a, b) {
+             
+             if (a.space > b.space) return -1;
+             if (a.space < b.space) return 1;
+             return 0;
+            }
+          }
+        }
+       
+            // sort the 'products' array and return it
+            return this.products.sort(compare);
+          },
+
+
+          // filteredLesson:function(){
+          //   return this.products.filter((product)=>{
+          //     return (product.subject.toLowerCase().match(this.search)||product.location.toLowerCase().match(this.search))
+          //   });
+          // },
+
+        
+        }
+      });
+    </script>
+  </body>
+</html>
