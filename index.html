@@ -170,28 +170,28 @@
           }
         },
         created: function() {
-          // fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products").then(   
-          // function(response){
-          //   response.json().then(
-          //     function(json){
-          //       course.products=json;
-          //     }
-          //   )
-          // }
-          // );
-          fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products")
-.then(response => {
-    if(!response.ok) {
-        throw Error(response.statusText);
-    }
-    return response.json()
-})
-.then(json => {
-    course.products = json;
-})
-.catch(error => {
-    console.log("Error: ", error);
-});
+          fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products").then(   
+          function(response){
+            response.json().then(
+              function(json){
+                course.products=json;
+              }
+            )
+          }
+          );
+//           fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products")
+// .then(response => {
+//     if(!response.ok) {
+//         throw Error(response.statusText);
+//     }
+//     return response.json()
+// })
+// .then(json => {
+//     course.products = json;
+// })
+// .catch(error => {
+//     console.log("Error: ", error);
+// });
 
         },
          
