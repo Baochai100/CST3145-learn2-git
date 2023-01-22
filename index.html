@@ -72,6 +72,10 @@
         <span class="fas fa-cat"></span>
         Shopping Cart
       </button>
+      <button @click="saveProductToDB">
+        <span class="fas fa-cat"></span>
+        Test Save a Product to the DB
+      </button>
       </div>
       <div class="cart" v-else>
         <button disabled>
@@ -87,10 +91,10 @@
         <div v-for="product in sortedProducts  " class="container">
           
           <img v-bind:src="product.path" />
-          <p>Subject: {{product.topic}}</p>
+          <p>Subject: {{product.subject}}</p>
           <p>Location: {{product.location}}</p>
           <p>Price: {{product.price}}</p>
-          <!-- <p>Space: {{product.space}}</p> -->
+          <p>Space: {{product.space}}</p>
           <button
             v-on:click="clickFunction(product)"
             v-if="canAddToCart(product)"
@@ -166,7 +170,7 @@
           }
         },
         created: function() {
-          fetch("http://localhost:3000/collection/products").then(   
+          fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products").then(   
 
           function(response){
             response.json().then(
@@ -211,6 +215,36 @@
           submitForm(){
             alert('Order has been submitted!')
           },
+          saveProductToDB(){
+            const newProduct={
+              "_id": "63c7b24b9e028fa31b59dfc5",
+              "id": 1,
+              "siteName": "After School Club",
+              "subject": "Math",
+              "location": "London",
+              "price": 100,
+              "path": "math.png",
+              "space": 5
+            }
+            //set the url to your server and route
+            //fetch("http://localhost:3000/collections/products", {
+            fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products", {
+              method: "POST", //set the HTTP method as "POST"
+              headers: {
+                "Content-Type": "application/json", //set the data type as JSON
+              },
+              body: JSON.stringify(newProduct) //need to stringigy the JSON
+              }).then(
+              function(response) {
+                response.json().then(
+                  function(json) {
+                    alert("Success: " + json.acknowledged);
+                    console.log("Success: " + json.acknowledged);
+                    course.products.push(newProduct);
+                  }
+                )}
+              ); 
+          }
           
         },
           
