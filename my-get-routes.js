@@ -3,7 +3,6 @@ const path = require("path");
 const fs = require("fs");
 var app = express();
 const cors = require("cors");
-const path = require("path");
 
 //this is a middleware part(1)
 app.use(function (req, res, next) {
