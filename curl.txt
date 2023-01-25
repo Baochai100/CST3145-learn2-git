@@ -16,7 +16,7 @@ curl --header "Content-Type: application/json" --request POST --data '{
 }' http://localhost:3000/collections/order
 
 // delete a products by its id in collection(id needs to change)
-curl --request DELETE http://localhost:3000/collections/products/639c6c6ebb516090d4b0ca0c
+curl --request DELETE http://localhost:3000/collections/products/63c7b24b9e028fa31b59dfce
 
 // put route that can update space 
 curl --header "Content-Type: application/json" --request PUT --data '{
