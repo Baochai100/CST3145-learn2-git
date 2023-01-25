@@ -90,7 +90,7 @@
       <div v-if="showProduct" id="lessons">
         <div v-for="product in sortedProducts  " class="container">
           
-          <img v-bind:src="product.path" />
+          <img v-bind:src="{{'https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/' + product.path}}" />
           <p>Subject: {{product.subject}}</p>
           <p>Location: {{product.location}}</p>
           <p>Price: {{product.price}}</p>
