@@ -256,14 +256,14 @@
                 )}
               ); 
                 },
-
+                // only for one lesson which is 
           updateProducts(){
             const productsUpdate ={
               "lessonId":course.cart.map(item=>item._id),
               "space":course.cart.map(item=>item.space)-1
             }
             
-            fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/", {
+            fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/63c7b24b9e028fa31b59dfc5", {
               method: "PUT", //set the HTTP method as "PUT"
               headers: {
                 "Content-Type": "application/json", //set the data type as JSON
@@ -275,7 +275,7 @@
                   function(json) {
                     alert("Success: " + json.acknowledged);
                     console.log("Success: " + json.acknowledged);
-                    course.products.push(productsUpdate);
+                    
                     
                   }
                 )}
