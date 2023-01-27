@@ -113,7 +113,7 @@
         <h2>welcome to checkout page</h2>
         <div class="checkoutContainer"> 
         <div v-for="item in cart" class="container">
-          <img v-bind:src="serverURL + product.path" />
+          <img v-bind:src="serverURL + item.path" />
           <p>Subject: {{item.subject}}</p>
           <p>Location: {{item.location}}</p>
           <p>Price: {{item.price}}</p>
