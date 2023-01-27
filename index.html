@@ -234,7 +234,7 @@
             const newOrder={
               "name":course.order.name,
               "phone":course.order.phoneNumber,
-              "lessonId":course.cart.map(item=> item.lessonId),
+              "lessonId":course.cart.map(item=> item._id),
               "space":course.cart.map(item=>item.space)
 
             }
