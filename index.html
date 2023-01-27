@@ -113,7 +113,7 @@
         <h2>welcome to checkout page</h2>
         <div class="checkoutContainer"> 
         <div v-for="item in cart" class="container">
-          <img v-bind:src="item.path" />
+          <img v-bind:src="serverURL + product.path" />
           <p>Subject: {{item.subject}}</p>
           <p>Location: {{item.location}}</p>
           <p>Price: {{item.price}}</p>
@@ -135,7 +135,7 @@
             <input v-model.number="order.phoneNumber" id="phone" name="phone" type="number" required onkeyup="numbersOnly(this)"/>
           </div>
           <button id="checkOut" type="button" v-on:click="submitOrder">Check Out</button>
-          <button id="checkOut1" type="button" v-on:click="submitOrder">Check Out</button>
+          
         </form>
       </div>
       </div>
@@ -232,8 +232,8 @@
           },
           submitOrder(){
             const newOrder={
-              "name":order.name,
-              "phone":order.phoneNumber,
+              "name":course.order.name,
+              "phone":course.order.phoneNumber,
               "lessonId":cart._id,
               "space":cart.space
 
