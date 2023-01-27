@@ -136,6 +136,7 @@
           </div>
           <!-- <button id="checkOut" type="button" v-on:click="submitOrder && updateProducts">Check Out</button> -->
           <button id="checkOut" type="button" v-on:click="submitOrder">Check Out</button>
+          <button id="checkOut" type="button" v-on:click="updateProducts">Check Out</button>
         </form>
       </div>
       </div>
@@ -259,8 +260,9 @@
           updateProducts(){
             const productsUpdate ={
               "lessonId":course.cart.map(item=>item._id),
-              "space":course.cart.ma
+              "space":course.cart.map(item=>item.space)-1
             }
+            
             fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/productsUpdate.lessonId", {
               method: "PUT", //set the HTTP method as "POST"
               headers: {
@@ -273,7 +275,6 @@
                   function(json) {
                     alert("Success: " + json.acknowledged);
                     console.log("Success: " + json.acknowledged);
-                    course.products.push(newProduct);
                   }
                 )}
               ); 
