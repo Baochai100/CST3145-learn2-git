@@ -134,8 +134,8 @@
             <label for="phone">Phone</label>
             <input v-model.number="order.phoneNumber" id="phone" name="phone" type="number" required onkeyup="numbersOnly(this)"/>
           </div>
-          <button id="checkOut" type="button" v-on:click="submitOrder">Check Out</button>
-          
+          <!-- <button id="checkOut" type="button" v-on:click="submitOrder && updateProducts">Check Out</button> -->
+          <button id="checkOut" type="button" v-on:click="submitOrder && updateProducts">Check Out</button>
         </form>
       </div>
       </div>
@@ -234,8 +234,8 @@
             const newOrder={
               "name":course.order.name,
               "phone":course.order.phoneNumber,
-              "lessonId":course.cart._id,
-              "space":course.cart.space
+              "lessonId":course.cart.map(item=> item.lessonId),
+              "space":course.cart.map(item=>item.space)
 
             }
             fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/orders", {
@@ -255,6 +255,29 @@
                 )}
               ); 
                 },
+
+          updateProducts(){
+            const productsUpdate ={
+              "id":"",
+              "space":""
+            }
+            fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/productsUpdate.lessonId", {
+              method: "PUT", //set the HTTP method as "POST"
+              headers: {
+                "Content-Type": "application/json", //set the data type as JSON
+              },
+              body: JSON.stringify(productsUpdate) //need to stringigy the JSON
+              }).then(
+              function(response) {
+                response.json().then(
+                  function(json) {
+                    alert("Success: " + json.acknowledged);
+                    console.log("Success: " + json.acknowledged);
+                    course.products.push(newProduct);
+                  }
+                )}
+              ); 
+          },
           saveProductToDB(){
             const newProduct={
               "_id": "63c7b24b9e028fa31b59dfc5",
