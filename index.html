@@ -275,7 +275,8 @@
                   function(json) {
                     alert("Success: " + json.acknowledged);
                     console.log("Success: " + json.acknowledged);
-                    course.products.space.push(productsUpdate.space);
+                    course.products.push(productsUpdate);
+                    
                   }
                 )}
               );
