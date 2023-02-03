@@ -271,8 +271,26 @@
                   }
                 )}
               ); 
-              
+              if(course.products.id = this.cartId[i]){
+                let aThing = course.products.filter(item => item.id === this.cartId[i]);
+                const newLessonData = {
+                                "id": course.products.id,
+                                "siteName": "After School Club",
+                                "subject": aThing[0].subject,
+                                "location": aThing[0].location,
+                                "price": aThing[0].price,
+                                "path": aThing[0].path,
+                                "space": aThing[0].space,
+                            }
+                fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/"+course.products.id, {
+                  method: "PUT",
+                                headers:{
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify(newLessonData)
+                            })
                 }
+              }
                 },
                 // only for one lesson which is math london
           updateProducts(){
@@ -281,7 +299,7 @@
               "space":4
             }
             
-            fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/${productsUpdate.lessonId}", {
+            fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/",{
               method: "PUT", //set the HTTP method as "PUT"
               headers: {
                 "Content-Type": "application/json", //set the data type as JSON
