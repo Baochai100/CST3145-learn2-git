@@ -252,7 +252,7 @@
               "name":course.order.name,
               "phone":course.order.phoneNumber,
               "lessonId":course.cart.map(item=>item.id),
-              "space":course.cart.map(item=>item.space)
+              "space":course.cart.map(item=>5-item.space)
 
             }
             fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/orders", {
