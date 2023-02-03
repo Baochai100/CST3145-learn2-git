@@ -112,7 +112,7 @@
       <div v-else>
         <h2>welcome to checkout page</h2>
         <div class="checkoutContainer"> 
-        <div v-for="item in cart" v-if="cartId.includes(product.id)" class="container">
+        <div v-for="item in cart" v-if="cartId.includes(item.id)" class="container">
           <img v-bind:src="serverURL + item.path" />
           <p>Subject: {{item.subject}}</p>
           <p>Location: {{item.location}}</p>
