@@ -94,7 +94,7 @@
           <p>Subject: {{product.subject}}</p>
           <p>Location: {{product.location}}</p>
           <p>Price: {{product.price}}</p>
-          <p>Space: {{product.space}}</p>
+          <p>Space: {{cart.product.space}}</p>
           <button
             v-on:click="clickFunction(product)"
             v-if="canAddToCart(product)"
