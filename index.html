@@ -282,6 +282,10 @@
                                     "Content-Type": "application/json",
                                 },
                                 body: JSON.stringify(productsUpdate.space)
+                            }).then(res=>{
+                              return res.json();
+                            }).catch(error=>{
+                              console.log(error);
                             })
                           }
                             
