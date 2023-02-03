@@ -163,6 +163,7 @@
           products: [],//products,
           search:"",
           cart: [],
+          cartId:[],
           sort:{
             method:"Subject",
             order:"Ascending",
@@ -202,6 +203,8 @@
           addItemToCart: function (product) {
             if (product.space > 0) {
               this.cart.push(product);
+              this.cartId.push(product.id);
+              
             }
           },
 
@@ -230,8 +233,8 @@
           },
           CartedItemSpacesCount(id) {
             let count = 0;
-            for (let i = 0; i < this.cart.length; i++) {
-                if (this.cart[i] === id) {
+            for (let i = 0; i < this.cartId.length; i++) {
+                if (this.cartId[i] === id) {
                 count++;
                 }
             }
