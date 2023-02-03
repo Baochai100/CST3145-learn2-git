@@ -88,7 +88,7 @@
 
 
       <div v-if="showProduct" id="lessons">
-        <div v-for="product in sortedProducts  " class="container">
+        <div v-for="product in products " class="container">
           
           <img v-bind:src="serverURL + product.path" />
           <p>Subject: {{product.subject}}</p>
