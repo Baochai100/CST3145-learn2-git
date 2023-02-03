@@ -112,7 +112,7 @@
       <div v-else>
         <h2>welcome to checkout page</h2>
         <div class="checkoutContainer"> 
-        <div v-for="item in cart" class="container">
+        <div v-for="item in cart" v-if="cartId.includes(product.id)" class="container">
           <img v-bind:src="serverURL + item.path" />
           <p>Subject: {{item.subject}}</p>
           <p>Location: {{item.location}}</p>
@@ -163,6 +163,7 @@
           products: [],//products,
           search:"",
           cart: [],
+          cout:0,
           cartId:[],
           sort:{
             method:"Subject",
@@ -240,6 +241,7 @@
             }
             return count;
             },
+            
           submitForm(){
             alert('Order has been submitted!')
           },
