@@ -117,7 +117,7 @@
           <p>Subject: {{item.subject}}</p>
           <p>Location: {{item.location}}</p>
           <p>Price: {{item.price}}</p>
-          <p>Space: {{1}}</p>
+          <!-- <p>Space: {{1}}</p> -->
           <button v-on:click="deleteItemFromCart(item),addSpaceValue(item)">Remove</button>
         </div>
         </div> 
@@ -228,9 +228,19 @@
           toggleShowProduct() {
             this.showProduct = this.showProduct ? false : true;
           },
+          CartedItemSpacesCount(id) {
+            let count = 0;
+            for (let i = 0; i < this.MyCart.lessons.length; i++) {
+                if (this.MyCart.lessons[i] === id) {
+                count++;
+                }
+            }
+            return count;
+            },
           submitForm(){
             alert('Order has been submitted!')
           },
+
           submitOrder(){
             const newOrder={
               "name":course.order.name,
