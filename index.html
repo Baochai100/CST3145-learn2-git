@@ -230,8 +230,8 @@
           },
           CartedItemSpacesCount(id) {
             let count = 0;
-            for (let i = 0; i < this.MyCart.lessons.length; i++) {
-                if (this.MyCart.lessons[i] === id) {
+            for (let i = 0; i < this.cart.length; i++) {
+                if (this.cart[i] === id) {
                 count++;
                 }
             }
