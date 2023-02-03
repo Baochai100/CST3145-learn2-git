@@ -117,7 +117,7 @@
           <p>Subject: {{item.subject}}</p>
           <p>Location: {{item.location}}</p>
           <p>Price: {{item.price}}</p>
-          <!-- <p>Space: {{1}}</p> -->
+          <p>Space: {{CartedItemSpacesCount(item.id)}}</p>
           <button v-on:click="deleteItemFromCart(item),addSpaceValue(item)">Remove</button>
         </div>
         </div> 
