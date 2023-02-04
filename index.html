@@ -119,7 +119,7 @@
           <p>Price: {{item.price}}</p>
           <p>Space: {{CartedItemSpacesCount(item.id)}}</p>
           <!-- <button v-on:click="deleteItemFromCart(item),addSpaceValue(item)">Remove</button> -->
-          <button v-on:click="RemoveCartItem(product)">Remove</button>
+          <button v-on:click="RemoveCartItem(item)">Remove</button>
         </div>
         </div> 
         
@@ -213,7 +213,7 @@
           changeSpaceValue: function (product) {
             if (product.space > 0) {
               product.space -= 1;
-            }
+            } 
           },
 
           clickFunction: function (product) {
