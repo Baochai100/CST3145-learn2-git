@@ -291,7 +291,7 @@
 
               const productsUpdate ={
               // "lessonId":convertIntToHexString(this.cartId[i]),
-              "lessonId":course.cart.map(item=>item.id),
+              "lessonId":course.cart.map(item=>item._id),
               "space":course.cart.map(item=>item.space)
             }
             for (const lessonId of productsUpdate.lessonId) {
