@@ -281,13 +281,14 @@
                   }
                 )}
               ); 
-              this.cart.forEach(j => {
-                this.lessons.forEach(i => {
-                  let count = null;
-                  if (j == i.id) {
-                    count = count + 1;
+              this.cart.forEach(cartItem => {
+                this.products.forEach(lesson => {
+                  
+                  if (cartItem === lesson.id) {
                     const updateLesson = {
-                      "space": i.space - count}
+                      space: lesson.space - 1
+                    };
+      
                       fetch(`https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/${i._id}`, { 
                         method: "PUT",
                         headers: {
