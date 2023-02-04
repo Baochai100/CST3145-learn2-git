@@ -281,8 +281,16 @@
                   }
                 )}
               ); 
+              const convertIntToHexString = (num) => {
+                let hexString = num.toString(16);
+                while (hexString.length < 24) {
+                  hexString = "0" + hexString;}
+                  return hexString;
+                };
+
+
               const productsUpdate ={
-              "lessonId":this.cartId[i],
+              "lessonId":convertIntToHexString(this.cartId[i]),
               "space":course.cart.map(item=>item.space)
             }
             // for (const lessonId of productsUpdate.lessonId) {
