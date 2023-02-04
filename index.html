@@ -285,8 +285,30 @@
               "lessonId":this.cartId[i],
               "space":course.cart.map(item=>item.space)
             }
-            for (const lessonId of productsUpdate.lessonId) {
-                fetch(`https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/${lessonId}`, {
+            // for (const lessonId of productsUpdate.lessonId) {
+            //     fetch(`https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/${lessonId}`, {
+            //       method: "PUT",
+            //       headers:{
+            //                 "Content-Type": "application/json",
+            //                 },
+            //       body: JSON.stringify({ productsUpdate})
+            //                 }).then(res=>{
+            //                   return res.json();
+            //                 }).then((data) => {
+            //                   console.log("Successfully updated document with lessonId:", lessonId);
+
+            //                 }).catch((error)=>{
+            //                   console.log(error);
+            //                 });
+            //               }
+                            
+                
+              
+            //   alert('Order submitted and user account has been registered, Successfully!');
+            //     }
+            //   },
+            
+                fetch(`https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/`+productsUpdate.lessonId, {
                   method: "PUT",
                   headers:{
                             "Content-Type": "application/json",
@@ -300,7 +322,7 @@
                             }).catch((error)=>{
                               console.log(error);
                             });
-                          }
+                          
                             
                 
               
