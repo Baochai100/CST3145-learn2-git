@@ -260,7 +260,7 @@
             const newOrder={
               "name":course.order.name,
               "phone":course.order.phoneNumber,
-              "lessonId":course.cart.map(item=>item.id),
+              "lessonId":course.cart.map(item=>item._id),
               "space":course.cart.map(item=>5-item.space)
 
             }
@@ -281,7 +281,7 @@
                 )}
               ); 
               const productsUpdate ={
-              "lessonId":course.cart.map(item=>item.id),
+              "lessonId":course.cart.map(item=>item._id),
               "space":course.cart.map(item=>item.space)
             }
             for (const lessonId of productsUpdate.lessonId) {
@@ -290,7 +290,7 @@
                   headers:{
                             "Content-Type": "application/json",
                             },
-                  body: JSON.stringify({ space: productsUpdate.space })
+                  body: JSON.stringify({ productsUpdate})
                             }).then(res=>{
                               return res.json();
                             }).then((data) => {
