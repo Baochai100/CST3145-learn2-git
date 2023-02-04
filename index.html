@@ -118,6 +118,7 @@
           <p>Location: {{item.location}}</p>
           <p>Price: {{item.price}}</p>
           <p>Space: {{CartedItemSpacesCount(item.id)}}</p>
+          <!-- <button v-on:click="deleteItemFromCart(item),addSpaceValue(item)">Remove</button> -->
           <button v-on:click="deleteItemFromCart(item),addSpaceValue(item)">Remove</button>
         </div>
         </div> 
@@ -219,6 +220,14 @@
             this.addItemToCart(product);
             this.changeSpaceValue(product);
           },
+          RemoveCartItem(product){
+            for (let i = 0; i < this.cart.length; i++) {
+              if (this.cartId[i] == product.id) {
+                this.cartId.splice(i, 1);
+                product.space+=1;
+                return}
+              }
+            },
 
           deleteItemFromCart: function(product){
             this.cart.pop(product);
