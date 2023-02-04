@@ -256,12 +256,13 @@
           },
 
           submitOrder(){
-            
+            for (let i = 0; i < this.cartId.length; i++) { 
             const newOrder={
               "name":course.order.name,
               "phone":course.order.phoneNumber,
-              "lessonId":course.cart.map(item=>item._id),
-              "space":course.cart.map(item=>5-item.space)
+              // "lessonId":course.cart.map(item=>item._id),
+              "lessonId":this.cartId[i],
+              "space":1
 
             }
             fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/orders", {
@@ -281,7 +282,7 @@
                 )}
               ); 
               const productsUpdate ={
-              "lessonId":course.cart.map(item=>item._id),
+              "lessonId":this.cartId[i],
               "space":course.cart.map(item=>item.space)
             }
             for (const lessonId of productsUpdate.lessonId) {
@@ -304,7 +305,8 @@
                 
               
               alert('Order submitted and user account has been registered, Successfully!');
-                },
+                }
+              },
                 // only for one lesson which is math london
           updateProducts(){
             const productsUpdate ={
