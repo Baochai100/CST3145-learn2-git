@@ -321,7 +321,7 @@
                   headers:{
                             "Content-Type": "application/json",
                             },
-                  body: JSON.stringify({ productsUpdate})
+                  body: JSON.stringify({space: productsUpdate.space})
                             }).then(res=>{
                               return res.json();
                             }).then((data) => {
