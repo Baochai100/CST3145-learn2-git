@@ -221,7 +221,7 @@
             this.changeSpaceValue(product);
           },
           RemoveCartItem(product){
-            for (let i = 0; i < this.cart.length; i++) {
+            for (let i = 0; i < this.cartId.length; i++) {
               if (this.cartId[i] == product.id) {
                 this.cartId.splice(i, 1);
                 product.space+=1;
