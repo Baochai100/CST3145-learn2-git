@@ -20,7 +20,7 @@
   <body>
     <div id="course">
       <h1 v-text="siteName"></h1>
-      <input type="text" v-model="SearchResultLesson" v-on:keyup="SearchActivated" placeholder="Search Lessons" id="searchBox"/>
+      <input type="text"  placeholder="Search Lessons" id="searchBox" v-model="SearchResultLesson" v-on:keyup="SearchActivated"/>
 
      
       <h3>Sort By</h3>
@@ -166,7 +166,7 @@
           serverURL: "https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/",
           siteName: "After School Club",
           showProduct: true,
-          SearchResultLesson:'',
+          SearchResultLesson:null,
           // product: {
           //   id: 000,
           //   siteName: "After School Club",
