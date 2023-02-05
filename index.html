@@ -87,9 +87,9 @@
       <div>
         <ul v-if="SearchItemsView">
           <h3>Search Results</h3>
-          <li v-for="lesson in FilterLessons">
-            
-            <!-- <img v-bind:src="serverURL + lesson.path"/><br>
+            <li v-for="lesson in FilterLessons"> 
+           
+            <img v-bind:src="serverURL + lesson.path"/><br>
             <p>Subject: {{lesson.subject}} </p>
             <p>Location: {{lesson.location}}</p>
             <p>Price: {{lesson.price}}</p>
@@ -103,7 +103,7 @@
 
 
       <div v-if="showProduct" id="lessons">
-        <div v-for="product in sortedProducts " class="container">
+        <div v-for="product in sortedProducts" class="container">
           
           <img v-bind:src="serverURL + product.path" />
           <p>Subject: {{product.subject}}</p>
