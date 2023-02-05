@@ -543,7 +543,7 @@
               return (product.subject.toLowerCase().match(this.search)||product.location.toLowerCase().match(this.search))
             });
           },
-          FilterLessons(){
+          FilterLessons:function(){
             if(!this.search)return this.products
             let search = this.search.toLowerCase()
             return this.search.filter(oneLesson=>{
