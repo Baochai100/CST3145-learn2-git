@@ -281,40 +281,30 @@
                   }
                 )}
               ); 
-              this.cartId.forEach(cartItem => {
-                this.products.forEach(lesson1 => {
-                  
-                  if (cartItem === lesson1.id) {
-                    const updateLesson = {
-                      space: lesson1.space - 1
-                    };
-                        const convertIntToHexString = (num) => {
-                        let hexString = num.toString(16);
-                        while (hexString.length < 24) {
-                        hexString = "0" + hexString;}
-                        return hexString;
-                        };
-                        const idAsString = convertIntToHexString(lesson1.id);
-                        
-                      fetch(`https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/${idAsString}`, { 
-                        method: "PUT",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(updateLesson)
-                      }).then(
-                        function (response) {
-                          response.json().then(
-                            function (json){
-                              console.log("Success: " + json.ackowledged);
-                            }
-                          )
-                        }
-                      )
-                  }
-                })
-              })
-            
+              if(course.products.id = this.cartId[i]){
+              let obj = course.products.filter(item => item.id === this.cartId[i]);
+              const newLessonData = {
+               
+                "id": course.products.id,
+                "siteName": obj[0].siteName,
+                "subject":obj[0]. subject,
+                "location":obj[0]. location,
+                "price": obj[0].price,
+                "path": obj[0].path,
+                "space": obj[0].space
+              }
+              fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/"+course.products.id,{
+                method: "PUT",
+                headers:{
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newLessonData)})
+              }else{
+                console.log("Not Matched");
+              }
+              
+              
+              
                  
 
             //   const convertIntToHexString = (num) => {
