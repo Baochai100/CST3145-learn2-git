@@ -132,6 +132,21 @@ app.get("/collections/:collectionName/:id", function (req, res, next) {
   );
 });
 
+// a get collection by using search
+app.get(
+  "/collections/:collectionName/search/:search",
+  function (req, res, next) {
+    req.collection
+      .find({ subjectName: { $regex: req.params.search, $options: "i" } })
+      .toArray(function (err, results) {
+        if (err) {
+          return next(err);
+        }
+        res.send(results);
+      });
+  }
+);
+
 // post something to a collection(maybe change collection to order collection)
 app.post("/collections/:collectionName", function (req, res, next) {
   // TODO: Validate req.body
