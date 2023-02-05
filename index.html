@@ -276,15 +276,15 @@
               if(this.SearchResultLesson==""|| null){
                 this.SearchItemsView = false;
               }
-              // fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/search/"+this.SearchResultLesson).then(
-              //   function(response) {
-              //     response.json().then(
-              //       function(json) {
-              //         course.searchResults=json;
-              //       }
-              //     )
-              //   }
-              // )
+              fetch("https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/search/"+this.SearchResultLesson).then(
+                function(response) {
+                  response.json().then(
+                    function(json) {
+                      course.searchResults=json;
+                    }
+                  )
+                }
+              )
             },
 
             
