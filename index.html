@@ -20,7 +20,7 @@
   <body>
     <div id="course">
       <h1 v-text="siteName"></h1>
-      <input type="text" v-model="search" v-on:keyup="SearchActivated" placeholder="Search Lessons" id="searchBox"/>
+      <input type="text" v-model="SearchResultLesson" v-on:keyup="SearchActivated" placeholder="Search Lessons" id="searchBox"/>
 
       <ul v-if="SearchItemsView">
         <h3>Search Results</h3>
@@ -161,6 +161,7 @@
           serverURL: "https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/",
           siteName: "After School Club",
           showProduct: true,
+          SearchResultLesson:null,
           // product: {
           //   id: 000,
           //   siteName: "After School Club",
@@ -173,6 +174,7 @@
           orders:[],
           products: [],//products,
           search:"",
+          searchResults: [],
           cart: [],
           cout:0,
           cartId:[],
@@ -265,9 +267,9 @@
             return count;
             },
             SearchActivated: function() {
-              
-              if(!this.search==" "){
-                this.SearchItemsView = true;
+              this.SearchItemsView = true;
+              if(this.SearchResultLesson==" "){
+                this.SearchItemsView = false;
 
               }
             },
@@ -455,10 +457,10 @@
             return this.cart.length || "";
           },
           FilterLessons(){
-            if(!this.search)return this.products
-            let search = this.search.toLowerCase()
-            return this.search.filter(oneLesson=> {
-              return oneLesson.subject.toLowerCase().includes(search)
+            if(!this.SearchResultLesson)return this.products
+            let SearchResultLesson = this.SearchResultLesson.toLowerCase()
+            return this.searchResults.filter(oneLesson=> {
+              return oneLesson.subject.toLowerCase().includes(SearchResultLesson)
             })
           },
 
