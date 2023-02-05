@@ -8,4 +8,7 @@ https://baochai100.github.io/CST3145-learn2-git/
 
 o the GitHub Page that runs your front end (the Vue.js code).
 https://baochai100.github.io/CST3145-learn-git/
-o the Heroku route that returns the information of lesson information.
+
+
+AWS server
+http://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/
