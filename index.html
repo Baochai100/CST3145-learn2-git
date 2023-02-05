@@ -454,6 +454,13 @@
           totalItemInTheCart: function () {
             return this.cart.length || "";
           },
+          FilterLessons(){
+            if(!this.search)return this.products
+            let search = this.search.toLowerCase()
+            return this.search.filter(oneLesson=> {
+              return oneLesson.subject.toLowerCase().includes(search)
+            })
+          },
 
           sortedProducts() {
             // the comparison function that defines the order
@@ -542,14 +549,8 @@
             return this.products.filter((product)=>{
               return (product.subject.toLowerCase().match(this.search)||product.location.toLowerCase().match(this.search))
             });
-          },
-          FilterLessons:function(){
-            if(!this.search)return this.products
-            let search = this.search.toLowerCase()
-            return this.search.filter(oneLesson=>{
-              return oneLesson.subject.toLowerCase().includes(search)
-            })
           }
+          
 
         
         }
