@@ -282,12 +282,12 @@
                 )}
               ); 
               if(course.products.id = this.cartId[i]){
-                console.log(this.MyCart.lessons[i]);
-                console.log(MyStore.lessons.id);
+                console.log(this.cartId[i]);
+                console.log(course.products.id);
 
               let obj = course.products.filter(item => item.id === this.cartId[i]);
               console.log(obj[0].spaces);
-              
+
               const newLessonData = {
                
                 "id": course.products.id,
