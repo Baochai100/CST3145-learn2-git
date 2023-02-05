@@ -174,6 +174,10 @@ app.delete("/collections/:collectionName/:id", function (req, res, next) {
   );
 });
 
+// a PUT API update an element
+app.put("/", function (req, res) {
+  res.send("Okay, let's update an element.");
+});
 // put that can update the space
 app.put("/collections/:collectionName/:id", function (req, res, next) {
   // TODO: Validate req.body
