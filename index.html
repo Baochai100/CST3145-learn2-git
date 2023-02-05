@@ -328,19 +328,19 @@
                   return hexString;
                 };
 
-
+                for (let i = 0; i < course.cart.length; i++) {
               const productsUpdate ={
-              // "lessonId":convertIntToHexString(this.cartId[i]),
-              "lessonId":course.cart.map(item=>item._id),
+              "lessonId":convertIntToHexString(course.cart[i]._id),
+              // "lessonId":course.cart.map(item=>item._id),
               "space":course.cart.map(item=>item.space)
             }
-            for (const lessonId of productsUpdate.lessonId) {
-                fetch(`https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/${lessonId}`, {
+            // for (const lessonId of productsUpdate.lessonId) {
+                fetch(`https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/collections/products/${productsUpdate.lessonId}`, {
                   method: "PUT",
                   headers:{
                             "Content-Type": "application/json",
                             },
-                  body: JSON.stringify({ productsUpdate})
+                  body: JSON.stringify(productsUpdate)
                             }).then(res=>{
                               return res.json();
                             }).then((data) => {
@@ -376,7 +376,7 @@
                 
               
               alert('Order submitted and user account has been registered, Successfully!');
-                
+              
               },
                 // only for one lesson which is math london
           updateProducts(){
