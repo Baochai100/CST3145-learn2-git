@@ -87,8 +87,8 @@
       <div>
         <ul v-if="SearchItemsView">
           <h3>Search Results</h3>
-          <li v-for="lesson in FilterLessons">
-            <p>what?</p>
+          <!-- <li v-for="lesson in FilterLessons">
+            <p>what?</p> -->
             <!-- <img v-bind:src="serverURL + lesson.path"/><br>
             <p>Subject: {{lesson.subject}} </p>
             <p>Location: {{lesson.location}}</p>
@@ -103,7 +103,7 @@
 
 
       <div v-if="showProduct" id="lessons">
-        <div v-for="product in sortedProducts  " class="container">
+        <div v-for="product in sortedProducts || FilterLessons " class="container">
           
           <img v-bind:src="serverURL + product.path" />
           <p>Subject: {{product.subject}}</p>
@@ -166,7 +166,7 @@
           serverURL: "https://lesson-env.eba-dn8ginxr.eu-west-2.elasticbeanstalk.com/",
           siteName: "After School Club",
           showProduct: true,
-          SearchResultLesson:null,
+          SearchResultLesson:'',
           // product: {
           //   id: 000,
           //   siteName: "After School Club",
