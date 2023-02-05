@@ -137,7 +137,7 @@ app.get(
   "/collections/:collectionName/search/:search",
   function (req, res, next) {
     req.collection
-      .find({ Subject: { $regex: req.params.search, $options: "i" } })
+      .find({ subject: { $regex: req.params.search, $options: "i" } })
       .toArray(function (err, results) {
         if (err) {
           return next(err);
